@@ -1,6 +1,7 @@
 import axios from 'axios';
-import Dev from '../models/Dev';
 
+import Dev from '../models/Dev';
+import { findConnections, sendMessage } from '../../websocket';
 import { parseStringAsArray } from '../../utils/parseStringAsArray';
 
 class DevContrller {
@@ -40,6 +41,16 @@ class DevContrller {
       techs: techList,
       location,
     });
+
+    const sendSocketMessageTo = findConnections(
+      {
+        latitude,
+        longitude,
+      },
+      techList
+    );
+
+    sendMessage(sendSocketMessageTo, 'new-dev', newDev);
 
     return res.json(newDev);
   }

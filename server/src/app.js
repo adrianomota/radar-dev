@@ -1,5 +1,4 @@
 import './bootstrap';
-
 import cors from 'cors';
 import Youch from 'youch';
 import express from 'express';

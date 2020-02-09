@@ -11,11 +11,8 @@ export default function Main() {
 
   useEffect(() => {
     async function loadDevs() {
-      // const response = await api.get('/devs');
-      // setDevs(response.data);
-
-      console.log(newDevs.length);
-      newDevs.map(dev => console.log(dev));
+      const response = await api.get('/devs');
+      setDevs(response.data);
     }
     loadDevs();
   }, [newDevs]);
